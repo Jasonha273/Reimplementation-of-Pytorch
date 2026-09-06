@@ -10,9 +10,6 @@ class Value:
     - ``_backward``: a no-op closure here; stage_03 installs the per-op gradient
       rule on it. Reserving the field now keeps the field set stable across stages.
 
-    Operand ORDER is not stored: ``_prev`` is a set, which is fine because the
-    stage_03 gradient closures capture each operand directly, so ``a - b`` and
-    ``a / b`` know which side is which without the node remembering order.
     """
     def __init__(self, data, _children=(), _op=''):
         self.data = float(data)
