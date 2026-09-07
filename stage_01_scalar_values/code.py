@@ -38,7 +38,13 @@ class Value:
         Creates a new Value object with the sum of the data from both operands,
         and sets the current Value object and the other operand as its children.
         """
-        other = other if isinstance(other, Value) else Value(other)
+
+
+        #Note to self isinstance is checking against type(self) unlike the rest of the code 
+        # which checks against Value. 
+        # This is to ensure that if Value is subclassed, 
+        # the subclass will still work correctly with the operator overloads.
+        other = other if isinstance(other, type(self)) else type(self)(other)
         return self._make(self.data + other.data, (self, other), '+')
 
     def __mul__(self, other):
@@ -47,7 +53,7 @@ class Value:
         Creates a new Value object with the product of the data from both operands,
         and sets the current Value object and the other operand as its children.
         """
-        other = other if isinstance(other, Value) else Value(other)
+        other = other if isinstance(other, Value) else type(self)(other)
         return self._make(self.data * other.data, (self, other), '*')
 
     def __pow__(self, other):
@@ -59,7 +65,7 @@ class Value:
         """
         if(not isinstance(other, (int, float))):
             raise TypeError("Exponent must be a numeric type (int or float).")
-        other = other if isinstance(other, Value) else Value(other)
+        other = other if isinstance(other, Value) else type(self)(other)
         return self._make(self.data ** other.data, (self, other), '**')
         
 
@@ -69,7 +75,7 @@ class Value:
         Creates a new Value object with the difference of the data from both operands,
         and sets the current Value object and the other operand as its children.
         """
-        other = other if isinstance(other, Value) else Value(other)
+        other = other if isinstance(other, Value) else type(self)(other)
         return self._make(self.data - other.data, (self, other), '-')
 
     def __truediv__(self, other):
@@ -78,7 +84,7 @@ class Value:
         Creates a new Value object with the result of dividing the data from the current
         Value object by the data from the other operand, and sets both as its children.
         """
-        other = other if isinstance(other, Value) else Value(other)
+        other = other if isinstance(other, Value) else type(self)(other)
         return self._make(self.data / other.data, (self, other), '/')
 
     def __neg__(self):
