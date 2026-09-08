@@ -37,9 +37,9 @@ def trace(root):
         so it terminates even though the graph is a DAG."""
         if v not in nodes:
             nodes.add(v)
-            for child in v._prev:
-                edges.add((child, v))
-                build(child)
+            for parent in v._prev:
+                edges.add((parent, v))
+                build(parent)
 
     build(root)
     return nodes, edges

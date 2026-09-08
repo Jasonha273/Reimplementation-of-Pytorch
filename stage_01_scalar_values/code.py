@@ -53,7 +53,7 @@ class Value:
         Creates a new Value object with the product of the data from both operands,
         and sets the current Value object and the other operand as its children.
         """
-        other = other if isinstance(other, Value) else type(self)(other)
+        other = other if isinstance(other, type(self)) else type(self)(other)
         return self._make(self.data * other.data, (self, other), '*')
 
     def __pow__(self, other):
@@ -63,10 +63,9 @@ class Value:
         Value object to the power of the data from the other operand, and sets both
         as its children.
         """
-        if(not isinstance(other, (int, float))):
+        if not isinstance(other, (int, float)):
             raise TypeError("Exponent must be a numeric type (int or float).")
-        other = other if isinstance(other, Value) else type(self)(other)
-        return self._make(self.data ** other.data, (self, other), '**')
+        return self._make(self.data ** other, (self,), f'**{other}')
         
 
     def __sub__(self, other):
@@ -75,8 +74,8 @@ class Value:
         Creates a new Value object with the difference of the data from both operands,
         and sets the current Value object and the other operand as its children.
         """
-        other = other if isinstance(other, Value) else type(self)(other)
-        return self._make(self.data - other.data, (self, other), '-')
+        other = other if isinstance(other, type(self)) else type(self)(other)
+        return self + (-other)
 
     def __truediv__(self, other):
         """
@@ -84,8 +83,8 @@ class Value:
         Creates a new Value object with the result of dividing the data from the current
         Value object by the data from the other operand, and sets both as its children.
         """
-        other = other if isinstance(other, Value) else type(self)(other)
-        return self._make(self.data / other.data, (self, other), '/')
+        other = other if isinstance(other, type(self)) else type(self)(other)
+        return self * (other ** -1)
 
     def __neg__(self):
         """
@@ -93,7 +92,7 @@ class Value:
         Creates a new Value object with the negated data from the current Value object,
         and sets the current Value object as its child.
         """
-        return self._make(-self.data, (self,), 'neg')
+        return self * -1
     
     # reflected operators: enable `2 * a`, `1 + a`, `3 - a`, `6 / a`
 
@@ -107,7 +106,7 @@ class Value:
 
     def __rsub__(self, other):
         """Return other - self (as other + (-self))."""
-        return Value(other) - self
+        return type(self)(other) - self
     def __rtruediv__(self, other):
         """Return other / self (as other * self ** -1)."""
-        return Value(other) / self
+        return type(self)(other) / self
