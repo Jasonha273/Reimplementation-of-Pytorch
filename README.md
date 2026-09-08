@@ -95,9 +95,9 @@ pip install -r requirements.txt
 
 | Stage | Status |
 |---|---|
-| 01 – Scalar Values | ⬜ Not started |
-| 02 – Computational Graph | ⬜ Not started |
-| 03 – Local Derivatives | ⬜ Not started |
+| 01 – Scalar Values | ✅ Not started |
+| 02 – Computational Graph | ✅ Not started |
+| 03 – Local Derivatives | 🚧 Not started |
 | 04 – Chain Rule | ⬜ Not started |
 | 05 – Backprop Engine | ⬜ Not started |
 | 06 – Vector Operations | ⬜ Not started |
