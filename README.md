@@ -95,16 +95,16 @@ pip install -r requirements.txt
 
 | Stage | Status |
 |---|---|
-| 01 – Scalar Values | ✅ Not started |
-| 02 – Computational Graph | ✅ Not started |
-| 03 – Local Derivatives | 🚧 Not started |
-| 04 – Chain Rule | ⬜ Not started |
-| 05 – Backprop Engine | ⬜ Not started |
-| 06 – Vector Operations | ⬜ Not started |
-| 07 – Matrix Operations | ⬜ Not started |
-| 08 – Tensor Engine | ⬜ Not started |
-| 09 – Neuron | ⬜ Not started |
-| 10 – Dense Layer | ⬜ Not started |
+| 01 – Scalar Values | ✅ |
+| 02 – Computational Graph | ✅ |
+| 03 – Local Derivatives | 🚧 |
+| 04 – Chain Rule | ⬜ |
+| 05 – Backprop Engine | ⬜ |
+| 06 – Vector Operations | ⬜ |
+| 07 – Matrix Operations | ⬜ |
+| 08 – Tensor Engine | ⬜ |
+| 09 – Neuron | ⬜ |
+| 10 – Dense Layer | ⬜ |
 | … | … |
 
 > Updated as I work through stages. ✅ = tests passing, 🚧 = in progress, ⬜ = not started.
